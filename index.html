@@ -19,6 +19,8 @@
                         groupC: "#27ae60",
                         groupD: "#f39c12",
                         groupE: "#e74c3c",
+                        dungeon: "#9b59b6",
+                        battleground: "#3498db",
                     },
                     fontFamily: {
                         game: ["Orbitron", "sans-serif"]
@@ -46,7 +48,7 @@
             <h1 class="text-3xl md:text-4xl font-game font-bold text-blue-400 mb-3">
                 <i class="fa-solid fa-hourglass-half mr-2"></i>RF ONLINE NEXT
             </h1>
-            <p class="text-gray-300">Novus World Boss Timer • Zona Waktu: <span class="font-semibold text-yellow-300">WIB (UTC+7)</span></p>
+            <p class="text-gray-300">Novus & Battleground Boss Timer • Zona Waktu: <span class="font-semibold text-yellow-300">WIB (UTC+7)</span></p>
             <p class="text-xs text-gray-400 mt-1">Data dikelola dari server Discord</p>
         </div>
 
@@ -73,7 +75,7 @@
         const DATABASE_URL = "https://raw.githubusercontent.com/notifikasispawn-ui/rf-online-next-timer/main/database.json";
         const TIMEZONE = "Asia/Jakarta";
 
-        // ✅ Daftar Boss + Link Gambar (sudah diperbaiki formatnya)
+        // ✅ Daftar Boss + Link Gambar
         const JADWAL_TETAP = [
             {
                 "nama_grup": "🟢 NOVUS BOSS GROUP A",
@@ -90,7 +92,7 @@
                 "waktu": ["12:00"],
                 "warna": "groupB",
                 "daftar": [
-                    {"nama": "Flower of Corruption", "level": 42, "lokasi": "South Dorian Forest", "gambar": "https://i.imgur.com/CwPddY2.png"},
+                    {"nama": "Flore of Corruption", "level": 42, "lokasi": "South Dorian Forest", "gambar": "https://i.imgur.com/CwPddY2.png"},
                     {"nama": "Mecha Wild Beast", "level": 48, "lokasi": "Galio Sunken Lands", "gambar": "https://i.imgur.com/J9WrpIX.png"},
                     {"nama": "Mecha Optic Larva", "level": 48, "lokasi": "Galio Sunken Lands", "gambar": "https://i.imgur.com/GrPnFeH.png"},
                     {"nama": "Rusty Sickle", "level": 49, "lokasi": "Spire Plains", "gambar": "https://i.imgur.com/jFHZBOy.png"}
@@ -105,6 +107,19 @@
                     {"nama": "Mecha Lizard", "level": 52, "lokasi": "Garden of the Gods", "gambar": "https://i.imgur.com/trWADQ3.png"},
                     {"nama": "Mecha Temizl", "level": 60, "lokasi": "Pilgrim's Island", "gambar": "https://i.imgur.com/ZqPoiXg.png"},
                     {"nama": "Prime Draco", "level": 62, "lokasi": "Fallen Temple", "gambar": "https://i.imgur.com/OuE2Eci.png"}
+                ]
+            },
+            // ✅ BOSS BARU - DUNGEON BOSS
+            {
+                "nama_grup": "🏰 DUNGEON BOSS - SECRET NEMESIS",
+                "waktu": ["21:00"],
+                "hari": [0, 5], // Senin & Sabtu
+                "keterangan": "Setiap Senin & Sabtu",
+                "warna": "dungeon",
+                "daftar": [
+                    {"nama": "Executor Lv.84", "level": 84, "lokasi": "Secret Nemesis Base 3F", "gambar": "https://i.imgur.com/BB9PaPH.png"},
+                    {"nama": "Grand Forge Lv.96", "level": 96, "lokasi": "Secret Nemesis Base 4F", "gambar": "https://i.imgur.com/Y3ceYk1.png"},
+                    {"nama": "Rhamnousia Lv.109", "level": 109, "lokasi": "Secret Nemesis Base 5F", "gambar": "https://i.imgur.com/SnuGw9w.png"}
                 ]
             }
         ];
@@ -132,6 +147,39 @@
                     {"nama": "Mecha Devourer", "level": 79, "lokasi": "Horizon Base", "gambar": "https://i.imgur.com/Ohls3V9.png"},
                     {"nama": "e Hook", "level": 80, "lokasi": "Screaming Vale", "gambar": "https://i.imgur.com/ctxdRyj.png"},
                     {"nama": "Eldrige", "level": 81, "lokasi": "Saufa Colony", "gambar": "https://i.imgur.com/IUqPxE1.png"}
+                ]
+            },
+            // ✅ BOSS BARU - BATTLEGROUND
+            {
+                "nama_grup": "⚔️ CRAG ORBITAL LIFT",
+                "interval_jam": 72,
+                "warna": "battleground",
+                "daftar": [
+                    {"nama": "Road Crusher Lv.72", "level": 72, "lokasi": "Damaged Road", "gambar": "https://i.imgur.com/0YByRbX.png"},
+                    {"nama": "Incinerator Lv.74", "level": 74, "lokasi": "Burnt Dock", "gambar": "https://i.imgur.com/IOOz0au.png"},
+                    {"nama": "Mad Stomp Lv.78", "level": 78, "lokasi": "Rampage Site", "gambar": "https://i.imgur.com/Ohls3V9.png"},
+                    {"nama": "Tower Guardian Lv.78", "level": 78, "lokasi": "Central Tower", "gambar": "https://i.imgur.com/ctxdRyj.png"}
+                ]
+            },
+            {
+                "nama_grup": "🚀 HIGH-ORBIT LAUNCH BASE",
+                "interval_jam": 72,
+                "warna": "battleground",
+                "daftar": [
+                    {"nama": "Titan Lv.92", "level": 92, "lokasi": "Battlefield of Giants", "gambar": "https://i.imgur.com/KDsvf8m.png"},
+                    {"nama": "Dagon Lv.94", "level": 94, "lokasi": "Pyromaniac's Hunting Ground", "gambar": "https://i.imgur.com/t9M1TTF.png"},
+                    {"nama": "Brontes Lv.96", "level": 96, "lokasi": "Pulverizer's Traces", "gambar": "https://i.imgur.com/SnuGw9w.png"}
+                ]
+            },
+            {
+                "nama_grup": "🛡️ ORBITAL DEFENSE FACILITY",
+                "interval_jam": 72,
+                "warna": "battleground",
+                "daftar": [
+                    {"nama": "Mad Bomber Lv.102", "level": 102, "lokasi": "Ground Zero", "gambar": "https://i.imgur.com/jFHZBOy.png"},
+                    {"nama": "Big Hunter Lv.104", "level": 104, "lokasi": "Grave of the Giants", "gambar": "https://i.imgur.com/GrPnFeH.png"},
+                    {"nama": "Dancing Waso Lv.106", "level": 106, "lokasi": "Hive", "gambar": "https://i.imgur.com/J9WrpIX.png"},
+                    {"nama": "Orbital Sentinel Lv.109", "level": 109, "lokasi": "Sentinel Nest", "gambar": "https://i.imgur.com/CwPddY2.png"}
                 ]
             }
         ];
@@ -161,12 +209,35 @@
                 });
         }
 
-        function hitungWaktuTetap(waktuStr) {
+        function hitungWaktuTetap(waktuStr, hariDaftar = null) {
             const sekarang = new Date(new Date().toLocaleString("en-US", {timeZone: TIMEZONE}));
             const [jam, menit] = waktuStr.split(":").map(Number);
             let target = new Date(sekarang);
             target.setHours(jam, menit, 0, 0);
-            if (sekarang >= target) target.setDate(target.getDate() + 1);
+
+            // Khusus jadwal mingguan (Dungeon Boss)
+            if (hariDaftar) {
+                const hariSekarang = sekarang.getDay(); // 0=Minggu, 1=Senin,... 6=Sabtu
+                let selisihHari = 0;
+                let ditemukan = false;
+                for (let i = 0; i < 7; i++) {
+                    const cekHari = (hariSekarang + i) % 7;
+                    if (hariDaftar.includes(cekHari)) {
+                        selisihHari = i;
+                        ditemukan = true;
+                        break;
+                    }
+                }
+                if (ditemukan) {
+                    target.setDate(target.getDate() + selisihHari);
+                    if (selisihHari === 0 && sekarang >= target) {
+                        target.setDate(target.getDate() + 7);
+                    }
+                }
+            } else {
+                // Jadwal harian biasa
+                if (sekarang >= target) target.setDate(target.getDate() + 1);
+            }
             return target;
         }
 
@@ -199,11 +270,12 @@
             let html = "";
 
             JADWAL_TETAP.forEach(grup => {
+                const keterangan = grup.keterangan ? `• ${grup.keterangan} ${grup.waktu.join(" & ")} WIB` : `• ${grup.waktu.join(" & ")} WIB`;
                 html += `
                 <div class="bg-gray-800/60 rounded-xl p-5 border-l-4 border-${grup.warna} card-shadow">
                     <h2 class="text-xl font-semibold text-${grup.warna} mb-4 flex items-center gap-2">
                         <i class="fa-solid fa-calendar-days"></i> ${grup.nama_grup}
-                        <span class="text-sm text-gray-400 font-normal">• ${grup.waktu.join(" & ")} WIB</span>
+                        <span class="text-sm text-gray-400 font-normal">${keterangan}</span>
                     </h2>
                     <div class="space-y-3">
                         ${grup.daftar.map((boss, idx) => `
@@ -215,7 +287,7 @@
                                         <i class="fa-solid fa-location-dot"></i> ${boss.lokasi}
                                     </p>
                                 </div>
-                                <div id="timer-${grup.nama_grup.replace(/\s/g, '')}-${idx}" class="text-xl font-semibold text-${grup.warna} w-32 text-right">
+                                <div id="timer-${grup.nama_grup.replace(/\s/g, '').replace(/[^\w]/g, '')}-${idx}" class="text-xl font-semibold text-${grup.warna} w-40 text-right">
                                     --:--:--
                                 </div>
                             </div>
@@ -241,7 +313,7 @@
                                         <i class="fa-solid fa-location-dot"></i> ${boss.lokasi}
                                     </p>
                                 </div>
-                                <div id="timer-${grup.nama_grup.replace(/\s/g, '')}-${idx}" class="text-xl font-semibold text-${grup.warna} w-32 text-right">
+                                <div id="timer-${grup.nama_grup.replace(/\s/g, '').replace(/[^\w]/g, '')}-${idx}" class="text-xl font-semibold text-${grup.warna} w-40 text-right">
                                     --:--:--
                                 </div>
                             </div>
@@ -259,24 +331,26 @@
             document.getElementById("resetTimer").textContent = formatWaktu(reset);
 
             JADWAL_TETAP.forEach((grup) => {
-                const waktu = hitungWaktuTetap(grup.waktu[0]);
+                const waktu = hitungWaktuTetap(grup.waktu[0], grup.hari || null);
+                const idGrup = grup.nama_grup.replace(/\s/g, '').replace(/[^\w]/g, '');
                 grup.daftar.forEach((boss, idx) => {
-                    const el = document.getElementById(`timer-${grup.nama_grup.replace(/\s/g, '')}-${idx}`);
+                    const el = document.getElementById(`timer-${idGrup}-${idx}`);
                     if (el) el.textContent = formatWaktu(waktu);
                 });
             });
 
             JADWAL_INTERVAL.forEach((grup) => {
+                const idGrup = grup.nama_grup.replace(/\s/g, '').replace(/[^\w]/g, '');
                 grup.daftar.forEach((boss, idx) => {
                     const waktu = hitungWaktuInterval(boss.nama, grup.interval_jam);
-                    const el = document.getElementById(`timer-${grup.nama_grup.replace(/\s/g, '')}-${idx}`);
+                    const el = document.getElementById(`timer-${idGrup}-${idx}`);
                     if (el) el.textContent = formatWaktu(waktu);
                 });
             });
         }
 
         ambilDatabase();
-        setInterval(ambilDatabase, 120000);
+        setInterval(ambilDatabase, 120000); // Perbarui data setiap 2 menit
     </script>
 </body>
 </html>
