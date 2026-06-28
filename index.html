@@ -75,7 +75,7 @@
         const DATABASE_URL = "https://raw.githubusercontent.com/notifikasispawn-ui/rf-online-next-timer/main/database.json";
         const TIMEZONE = "Asia/Jakarta";
 
-        // ✅ Daftar Boss + Link Gambar (semua link gambar kamu tetap dipertahankan)
+        // ✅ Daftar Boss + Link Gambar (semua gambar kamu tetap dipertahankan)
         const JADWAL_TETAP = [
             {
                 "nama_grup": "🟢 NOVUS BOSS GROUP A",
@@ -215,9 +215,8 @@
             let target = new Date(sekarang);
             target.setHours(jam, menit, 0, 0);
 
-            // Khusus jadwal mingguan (Dungeon Boss)
             if (hariDaftar) {
-                const hariSekarang = sekarang.getDay(); // 0=Minggu, 1=Senin,... 6=Sabtu
+                const hariSekarang = sekarang.getDay();
                 let selisihHari = 0;
                 let ditemukan = false;
                 for (let i = 0; i < 7; i++) {
@@ -235,18 +234,16 @@
                     }
                 }
             } else {
-                // Jadwal harian biasa
                 if (sekarang >= target) target.setDate(target.getDate() + 1);
             }
             return target;
         }
 
-        function hitungWaktuInterval(nama, jam) {
-            // Sesuaikan agar cocok dengan format nama di database Discord
-            const nama_lengkap = `${nama} Lv.${level}`;
-            if (!dataKalah[nama_lengkap]) return null;
-            const kalah = new Date(dataKalah[nama_lengkap]);
-            return new Date(kalah.getTime() + jam * 3600000);
+        // ✅ Perbaiki fungsi ini agar tidak error
+        function hitungWaktuInterval(namaLengkap, jamInterval) {
+            if (!dataKalah[namaLengkap]) return null;
+            const waktuKalah = new Date(dataKalah[namaLengkap]);
+            return new Date(waktuKalah.getTime() + jamInterval * 3600000);
         }
 
         function formatWaktu(tanggal) {
@@ -344,9 +341,8 @@
             JADWAL_INTERVAL.forEach((grup) => {
                 const idGrup = grup.nama_grup.replace(/\s/g, '').replace(/[^\w]/g, '');
                 grup.daftar.forEach((boss, idx) => {
-                    // Cocokkan nama dengan format di database Discord
-                    const nama_lengkap = `${boss.nama} Lv.${boss.level}`;
-                    const waktu = hitungWaktuInterval(nama_lengkap, grup.interval_jam);
+                    const namaLengkap = `${boss.nama} Lv.${boss.level}`;
+                    const waktu = hitungWaktuInterval(namaLengkap, grup.interval_jam);
                     const el = document.getElementById(`timer-${idGrup}-${idx}`);
                     if (el) el.textContent = formatWaktu(waktu);
                 });
@@ -354,7 +350,7 @@
         }
 
         ambilDatabase();
-        setInterval(ambilDatabase, 120000); // Perbarui data setiap 2 menit
+        setInterval(ambilDatabase, 120000);
     </script>
 </body>
 </html>
