@@ -21,6 +21,7 @@
                         groupE: "#e74c3c",
                         dungeon: "#9b59b6",
                         battleground: "#3498db",
+                        worldboss: "#c0392b"
                     },
                     fontFamily: {
                         game: ["Orbitron", "sans-serif"]
@@ -72,10 +73,10 @@
 
     <script>
         // ✅ Link database sesuai repositori kamu
-        const DATABASE_URL = "https://raw.githubusercontent.com/notifikasispawn-ui/rf-online-next-timer/main/database.json";
+        const DATABASE_URL = "https://raw.githubusercontent.com/ferdiantocc12-creator/rf-online-next-timer/main/database.json";
         const TIMEZONE = "Asia/Jakarta";
 
-        // ✅ Daftar Boss + Link Gambar (semua gambar kamu tetap dipertahankan)
+        // ✅ Daftar Boss + Link Gambar
         const JADWAL_TETAP = [
             {
                 "nama_grup": "🟢 NOVUS BOSS GROUP A",
@@ -120,6 +121,39 @@
                     {"nama": "Executor", "level": 84, "lokasi": "Secret Nemesis Base 3F", "gambar": "https://imgur.com/bGnH4Uh.png"},
                     {"nama": "Grand Forge", "level": 96, "lokasi": "Secret Nemesis Base 4F", "gambar": "https://imgur.com/oXHuYza.png"},
                     {"nama": "Rhamnousia", "level": 109, "lokasi": "Secret Nemesis Base 5F", "gambar": "https://imgur.com/KDU4VHZ.png"}
+                ]
+            },
+            // ✅ BOSS BARU - WORLD BOSS SESUAI JADWAL
+            {
+                "nama_grup": "🌍 WORLD BOSS - VRITRA & IGNA VRITRA",
+                "waktu": ["12:00", "20:00", "23:00"],
+                "hari": [1, 4, 0], // 1=Senin, 4=Kamis, 0=Minggu (format JS: 0=Minggu)
+                "keterangan": "Setiap Senin, Kamis, Minggu",
+                "warna": "worldboss",
+                "daftar": [
+                    {"nama": "Vritra", "level": 115, "lokasi": "Novus Central Plains", "gambar": "https://imgur.com/BDMcy7n"},
+                    {"nama": "Igna Vritra", "level": 118, "lokasi": "Burning Wasteland", "gambar": "https://imgur.com/6OAsDbw"}
+                ]
+            },
+            {
+                "nama_grup": "🌍 WORLD BOSS - GLEBA & BLITA GLEBA",
+                "waktu": ["12:00", "20:00", "23:00"],
+                "hari": [2, 5, 0], // 2=Selasa, 5=Jumat, 0=Minggu
+                "keterangan": "Setiap Selasa, Jumat, Minggu",
+                "warna": "worldboss",
+                "daftar": [
+                    {"nama": "Gleba", "level": 121, "lokasi": "Ancient Forest", "gambar": "https://imgur.com/LtCSpSf"},
+                    {"nama": "Blita Gleba", "level": 124, "lokasi": "Corrupted Swamp", "gambar": "https://imgur.com/GL7GBy1"}
+                ]
+            },
+            {
+                "nama_grup": "🌍 WORLD BOSS - STONE WORM",
+                "waktu": ["12:00", "20:00", "23:00"],
+                "hari": [3, 6, 0], // 3=Rabu, 6=Sabtu, 0=Minggu
+                "keterangan": "Setiap Rabu, Sabtu, Minggu",
+                "warna": "worldboss",
+                "daftar": [
+                    {"nama": "Stone Worm", "level": 127, "lokasi": "Desert Abyss", "gambar": "https://imgur.com/rSjau1l"}
                 ]
             }
         ];
@@ -216,7 +250,7 @@
             target.setHours(jam, menit, 0, 0);
 
             if (hariDaftar) {
-                const hariSekarang = sekarang.getDay();
+                const hariSekarang = sekarang.getDay(); // JS: 0=Minggu, 1=Senin,...6=Sabtu
                 let selisihHari = 0;
                 let ditemukan = false;
                 for (let i = 0; i < 7; i++) {
@@ -239,7 +273,6 @@
             return target;
         }
 
-        // ✅ Perbaiki fungsi ini agar tidak error
         function hitungWaktuInterval(namaLengkap, jamInterval) {
             if (!dataKalah[namaLengkap]) return null;
             const waktuKalah = new Date(dataKalah[namaLengkap]);
