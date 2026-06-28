@@ -75,7 +75,7 @@
         const DATABASE_URL = "https://raw.githubusercontent.com/notifikasispawn-ui/rf-online-next-timer/main/database.json";
         const TIMEZONE = "Asia/Jakarta";
 
-        // ✅ Daftar Boss + Link Gambar
+        // ✅ Daftar Boss + Link Gambar (semua link gambar kamu tetap dipertahankan)
         const JADWAL_TETAP = [
             {
                 "nama_grup": "🟢 NOVUS BOSS GROUP A",
@@ -117,9 +117,9 @@
                 "keterangan": "Setiap Senin & Sabtu",
                 "warna": "dungeon",
                 "daftar": [
-                    {"nama": "Executor Lv.84", "level": 84, "lokasi": "Secret Nemesis Base 3F", "gambar": "https://imgur.com/bGnH4Uh"},
-                    {"nama": "Grand Forge Lv.96", "level": 96, "lokasi": "Secret Nemesis Base 4F", "gambar": "https://imgur.com/oXHuYza"},
-                    {"nama": "Rhamnousia Lv.109", "level": 109, "lokasi": "Secret Nemesis Base 5F", "gambar": "https://imgur.com/KDU4VHZ"}
+                    {"nama": "Executor", "level": 84, "lokasi": "Secret Nemesis Base 3F", "gambar": "https://imgur.com/bGnH4Uh.png"},
+                    {"nama": "Grand Forge", "level": 96, "lokasi": "Secret Nemesis Base 4F", "gambar": "https://imgur.com/oXHuYza.png"},
+                    {"nama": "Rhamnousia", "level": 109, "lokasi": "Secret Nemesis Base 5F", "gambar": "https://imgur.com/KDU4VHZ.png"}
                 ]
             }
         ];
@@ -155,10 +155,10 @@
                 "interval_jam": 72,
                 "warna": "battleground",
                 "daftar": [
-                    {"nama": "Road Crusher Lv.72", "level": 72, "lokasi": "Damaged Road", "gambar": "https://imgur.com/zRlJbU6"},
-                    {"nama": "Incinerator Lv.74", "level": 74, "lokasi": "Burnt Dock", "gambar": "https://imgur.com/cZng3UD"},
-                    {"nama": "Mad Stomp Lv.78", "level": 78, "lokasi": "Rampage Site", "gambar": "https://imgur.com/o1uoLzs"},
-                    {"nama": "Tower Guardian Lv.78", "level": 78, "lokasi": "Central Tower", "gambar": "https://imgur.com/39jJ6Ua"}
+                    {"nama": "Road Crusher", "level": 72, "lokasi": "Damaged Road", "gambar": "https://imgur.com/zRlJbU6.png"},
+                    {"nama": "Incinerator", "level": 74, "lokasi": "Burnt Dock", "gambar": "https://imgur.com/cZng3UD.png"},
+                    {"nama": "Mad Stomp", "level": 78, "lokasi": "Rampage Site", "gambar": "https://imgur.com/o1uoLzs.png"},
+                    {"nama": "Tower Guardian", "level": 78, "lokasi": "Central Tower", "gambar": "https://imgur.com/39jJ6Ua.png"}
                 ]
             },
             {
@@ -166,9 +166,9 @@
                 "interval_jam": 72,
                 "warna": "battleground",
                 "daftar": [
-                    {"nama": "Titan Lv.92", "level": 92, "lokasi": "Battlefield of Giants", "gambar": "https://imgur.com/zH9YNlh"},
-                    {"nama": "Dagon Lv.94", "level": 94, "lokasi": "Pyromaniac's Hunting Ground", "gambar": "https://imgur.com/eU26iTb"},
-                    {"nama": "Brontes Lv.96", "level": 96, "lokasi": "Pulverizer's Traces", "gambar": "https://imgur.com/AqBaYKh"}
+                    {"nama": "Titan", "level": 92, "lokasi": "Battlefield of Giants", "gambar": "https://imgur.com/zH9YNlh.png"},
+                    {"nama": "Dagon", "level": 94, "lokasi": "Pyromaniac's Hunting Ground", "gambar": "https://imgur.com/eU26iTb.png"},
+                    {"nama": "Brontes", "level": 96, "lokasi": "Pulverizer's Traces", "gambar": "https://imgur.com/AqBaYKh.png"}
                 ]
             },
             {
@@ -176,10 +176,10 @@
                 "interval_jam": 72,
                 "warna": "battleground",
                 "daftar": [
-                    {"nama": "Mad Bomber Lv.102", "level": 102, "lokasi": "Ground Zero", "gambar": "https://imgur.com/FAP0lTB"},
-                    {"nama": "Big Hunter Lv.104", "level": 104, "lokasi": "Grave of the Giants", "gambar": "https://imgur.com/Sm9orew"},
-                    {"nama": "Dancing Waso Lv.106", "level": 106, "lokasi": "Hive", "gambar": "https://imgur.com/XLtwIkL"},
-                    {"nama": "Orbital Sentinel Lv.109", "level": 109, "lokasi": "Sentinel Nest", "gambar": "https://imgur.com/b53nq3z"}
+                    {"nama": "Mad Bomber", "level": 102, "lokasi": "Ground Zero", "gambar": "https://imgur.com/FAP0lTB.png"},
+                    {"nama": "Big Hunter", "level": 104, "lokasi": "Grave of the Giants", "gambar": "https://imgur.com/Sm9orew.png"},
+                    {"nama": "Dancing Waso", "level": 106, "lokasi": "Hive", "gambar": "https://imgur.com/XLtwIkL.png"},
+                    {"nama": "Orbital Sentinel", "level": 109, "lokasi": "Sentinel Nest", "gambar": "https://imgur.com/b53nq3z.png"}
                 ]
             }
         ];
@@ -242,8 +242,10 @@
         }
 
         function hitungWaktuInterval(nama, jam) {
-            if (!dataKalah[nama]) return null;
-            const kalah = new Date(dataKalah[nama]);
+            // Sesuaikan agar cocok dengan format nama di database Discord
+            const nama_lengkap = `${nama} Lv.${level}`;
+            if (!dataKalah[nama_lengkap]) return null;
+            const kalah = new Date(dataKalah[nama_lengkap]);
             return new Date(kalah.getTime() + jam * 3600000);
         }
 
@@ -342,7 +344,9 @@
             JADWAL_INTERVAL.forEach((grup) => {
                 const idGrup = grup.nama_grup.replace(/\s/g, '').replace(/[^\w]/g, '');
                 grup.daftar.forEach((boss, idx) => {
-                    const waktu = hitungWaktuInterval(boss.nama, grup.interval_jam);
+                    // Cocokkan nama dengan format di database Discord
+                    const nama_lengkap = `${boss.nama} Lv.${boss.level}`;
+                    const waktu = hitungWaktuInterval(nama_lengkap, grup.interval_jam);
                     const el = document.getElementById(`timer-${idGrup}-${idx}`);
                     if (el) el.textContent = formatWaktu(waktu);
                 });
