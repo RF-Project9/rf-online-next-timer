@@ -35,7 +35,7 @@
             .content-auto { content-visibility: auto; }
             .card-shadow { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
             .border-l-4 { border-left-width: 4px; }
-            .boss-img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 2px solid rgba(255,255,255,0.1); }
+            .boss-img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 2px solid rgba(255,255,255,0.1); background-color: #222; }
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,7 +127,7 @@
             {
                 "nama_grup": "🌍 WORLD BOSS - VRITRA & IGNA VRITRA",
                 "waktu": ["12:00", "20:00", "23:00"],
-                "hari": [1, 4, 0], // 1=Senin, 4=Kamis, 0=Minggu (format JS: 0=Minggu)
+                "hari": [1, 4, 0], // 1=Senin, 4=Kamis, 0=Minggu
                 "keterangan": "Setiap Senin, Kamis, Minggu",
                 "warna": "worldboss",
                 "daftar": [
@@ -312,7 +312,8 @@
                     <div class="space-y-3">
                         ${grup.daftar.map((boss, idx) => `
                             <div class="bg-gray-700/50 rounded-lg p-4 flex items-center gap-4">
-                                <img src="${boss.gambar}" alt="${boss.nama}" class="boss-img" loading="lazy">
+                                <img src="${boss.gambar}" alt="${boss.nama}" class="boss-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="boss-img bg-gray-600 items-center justify-center text-xs" style="display:none;">${boss.nama.charAt(0)}</div>
                                 <div class="flex-1">
                                     <h3 class="font-bold text-white text-lg">${boss.nama} <span class="text-sm text-gray-300">Lv.${boss.level}</span></h3>
                                     <p class="text-sm text-gray-300 mt-1 flex items-center gap-1">
@@ -338,7 +339,8 @@
                     <div class="space-y-3">
                         ${grup.daftar.map((boss, idx) => `
                             <div class="bg-gray-700/50 rounded-lg p-4 flex items-center gap-4">
-                                <img src="${boss.gambar}" alt="${boss.nama}" class="boss-img" loading="lazy">
+                                <img src="${boss.gambar}" alt="${boss.nama}" class="boss-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="boss-img bg-gray-600 items-center justify-center text-xs" style="display:none;">${boss.nama.charAt(0)}</div>
                                 <div class="flex-1">
                                     <h3 class="font-bold text-white text-lg">${boss.nama} <span class="text-sm text-gray-300">Lv.${boss.level}</span></h3>
                                     <p class="text-sm text-gray-300 mt-1 flex items-center gap-1">
